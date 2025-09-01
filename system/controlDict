@@ -1,0 +1,66 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version: 8                                      |
+|   \\  /    A nd           |                                                 |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      controlDict;
+}
+
+application     simpleFoam;
+
+startFrom       startTime;
+startTime       0;
+
+stopAt          endTime;
+endTime         1000;      // cap on iterations (simulation time steps)
+deltaT          1;
+
+writeControl    timeStep;
+writeInterval   200;
+
+purgeWrite      0;
+writeFormat     ascii;
+writePrecision  6;
+writeCompression off;
+
+runTimeModifiable yes;
+
+// Post-processing function objects
+functions
+{
+    forces
+    {
+        type            forces;
+        functionObjectLibs ("libforces.so");
+        patches         (airframe);        // monitor lift/drag on drone
+        rho             rhoInf;
+        rhoInf          1.225;             // air density [kg/m^3]
+        CofR            (0 0 0);           // center of rotation
+    }
+
+    forceCoeffs
+    {
+        type            forceCoeffs;
+        functionObjectLibs ("libforces.so");
+        patches         (airframe);
+        rho             rhoInf;
+        rhoInf          1.225;
+        CofR            (0 0 0);
+        liftDir         (0 1 0);           // y = lift
+        dragDir         (1 0 0);           // x = drag
+        pitchAxis       (0 0 1);
+        magUInf         10;                // freestream velocity
+        lRef            1;                 // reference length [m]
+        Aref            0.5;               // reference area [m^2]
+    }
+}
+
+// ************************************************************************* //
