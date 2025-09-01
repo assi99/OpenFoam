@@ -67,7 +67,7 @@ castellatedMeshControls
         }
     }
 
-    // Pick a point inside the flow region (not inside drone geometry)
+    // Inside the flow region and not inside drone geometry
     locationInMesh (2 0 0);
 
     resolveFeatureAngle 30;
@@ -86,7 +86,7 @@ snapControls
     multiRegionFeatureSnap false;
 }
 
-// ADD LAYERS CONTROLS
+// LAYERS CONTROLS
 addLayersControls
 {
     relativeSizes       true;
@@ -95,14 +95,14 @@ addLayersControls
     {
         "airframe.*"
         {
-            nSurfaceLayers 2;   // reduced to avoid memory crash
+            nSurfaceLayers 2;   // reduced to avoid crash
         }
     }
 
     expansionRatio      1.2;
-    finalLayerThickness 0.1;   // reduced from 0.3
+    finalLayerThickness 0.1;   
     minThickness        0.05;
-    nGrow               1;     // allows skipping bad faces
+    nGrow               1;     // allows skipping
 
     featureAngle        60;
     nRelaxIter          5;
