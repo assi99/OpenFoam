@@ -20,7 +20,7 @@ startFrom       startTime;
 startTime       0;
 
 stopAt          endTime;
-endTime         1000;      // cap on iterations (simulation time steps)
+endTime         1000;      // limit on iterations
 deltaT          1;
 
 writeControl    timeStep;
@@ -40,7 +40,7 @@ functions
     {
         type            forces;
         functionObjectLibs ("libforces.so");
-        patches         (airframe);        // monitor lift/drag on drone
+        patches         (airframe);        // monitor the lift/drag on drone
         rho             rhoInf;
         rhoInf          1.225;             // air density [kg/m^3]
         CofR            (0 0 0);           // center of rotation
