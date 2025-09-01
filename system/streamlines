@@ -5,8 +5,7 @@
     \\  /    A nd           | Version:  8
      \\/     M anipulation  |
 -------------------------------------------------------------------------------
-Description
-    Writes out files of streamlines with interpolated field data in VTK format.
+
 
 \*---------------------------------------------------------------------------*/
 
